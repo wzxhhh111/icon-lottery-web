@@ -1,0 +1,228 @@
+body {
+    font-family: sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    margin: 0;
+    padding: 20px;
+    text-align: center;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* 往中间偏上 */
+    align-items: center;
+    padding-top: 100px; /* 调整顶部间距 */
+}
+
+header {
+    margin-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    text-align: center;
+}
+
+h1 {
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    margin-bottom: 30px;
+    font-size: 2.5em;
+    width: 100%;
+    text-align: center;
+}
+
+/* --- 老虎机外层容器 --- */
+.slot-machine-wrapper {
+    position: relative;
+    width: 600px;
+    margin: 0 auto;
+    overflow: visible;
+}
+
+/* --- 老虎机样式 --- */
+.slot-machine {
+    position: relative;
+    width: 600px;
+    margin: 0 auto;
+    background: linear-gradient(145deg, #e6e6e6, #ffffff);
+    border-radius: 30px;
+    padding: 35px 40px;
+    box-shadow: 
+        0 20px 60px rgba(0,0,0,0.3),
+        inset 0 1px 0 rgba(255,255,255,0.8),
+        inset 0 -5px 15px rgba(0,0,0,0.1);
+    position: relative;
+    z-index: 2;
+}
+
+/* 指示灯 */
+.lights {
+    display: flex;
+    justify-content: center;
+    gap: 35px;
+    margin-bottom: 30px;
+}
+
+.light {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    box-shadow: 
+        inset 0 -2px 5px rgba(0,0,0,0.3),
+        0 2px 5px rgba(0,0,0,0.2);
+    border: 3px solid rgba(0,0,0,0.3);
+}
+
+.light.red {
+    background: radial-gradient(circle at 30% 30%, #ff6b6b, #c92a2a);
+}
+
+.light.yellow {
+    background: radial-gradient(circle at 30% 30%, #ffd93d, #f9a825);
+}
+
+.light.green {
+    background: radial-gradient(circle at 30% 30%, #6bcf7f, #2d9c45);
+}
+
+/* 指示灯闪烁动画 */
+.light.active {
+    animation: blink 0.5s ease-in-out infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
+
+/* 转轮容器 */
+.reels-container {
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    background: linear-gradient(to bottom, #2c2c2c, #1a1a1a);
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: inset 0 5px 15px rgba(0,0,0,0.5);
+    margin-bottom: 30px;
+    position: relative;
+}
+
+/* 单个转轮 */
+.reel {
+    width: 160px;
+    height: 160px;
+    background: #f0f0f0; /* 浅灰色背景 */
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 
+        inset 0 0 10px rgba(0,0,0,0.3),
+        0 3px 6px rgba(0,0,0,0.4);
+}
+
+/* 转轮条 */
+.reel-strip {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+}
+
+.reel-strip img {
+    display: block;
+    width: 100%;
+    height: 160px;
+    object-fit: contain;
+    padding: 18px;
+    box-sizing: border-box;
+}
+
+/* 转动动画 */
+.reel.spinning .reel-strip {
+    animation: spin 0.1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-160px); }
+}
+
+/* 拉杆容器 */
+.lever-container {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+    pointer-events: auto;
+}
+
+/* 拉杆 */
+.lever {
+    cursor: pointer;
+    transition: transform 0.3s ease-out;
+    width: 60px;
+    height: auto;
+    position: relative;
+    z-index: 1;
+}
+
+.lever img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* 拉杆把手 - 隐藏原有的 */
+.lever-handle {
+    display: none;
+}
+
+/* 拉杆球 - 隐藏原有的 */
+.lever-ball {
+    display: none;
+}
+
+/* 拉杆被拉下 - 使用scaleY压扁效果 */
+.lever.pulled {
+    transform: scaleY(0.6);
+}
+
+/* 开始按钮 */
+.spin-button {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #4a4a4a, #2c2c2c);
+    border: 6px solid #1a1a1a;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    margin: 0 auto;
+    display: block;
+    box-shadow: 
+        0 8px 15px rgba(0,0,0,0.3),
+        inset 0 -3px 7px rgba(0,0,0,0.3),
+        inset 0 3px 7px rgba(255,255,255,0.1);
+    transition: all 0.1s;
+    position: relative;
+    top: 0;
+}
+
+.spin-button:hover {
+    background: radial-gradient(circle at 30% 30%, #5a5a5a, #3c3c3c);
+}
+
+.spin-button:active {
+    top: 3px;
+    box-shadow: 
+        0 5px 10px rgba(0,0,0,0.3),
+        inset 0 -1px 3px rgba(0,0,0,0.3),
+        inset 0 1px 3px rgba(255,255,255,0.1);
+}
+
+.spin-button:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+}
