@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ios图标幸运盲盒</title>
+    <link rel="preload" as="image" href="images/question.png" fetchpriority="high">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>ios图标幸运盲盒</h1>
+        <!-- 老虎机容器 -->
+        <div class="slot-machine-wrapper">
+            <!-- 拉杆（在后层） -->
+            <div class="lever-container">
+                <div class="lever" id="lever">
+                    <img src="images/拉杆.png" alt="拉杆">
+                </div>
+            </div>
+            
+            <!-- 老虎机主体（在前层） -->
+            <div class="slot-machine">
+                <!-- 指示灯 -->
+                <div class="lights">
+                    <div class="light red"></div>
+                    <div class="light yellow"></div>
+                    <div class="light green"></div>
+                </div>
+                
+                <!-- 转轮容器 -->
+                <div class="reels-container">
+                    <div class="reel" id="reel1">
+                        <div class="reel-strip"></div>
+                    </div>
+                    <div class="reel" id="reel2">
+                        <div class="reel-strip"></div>
+                    </div>
+                    <div class="reel" id="reel3">
+                        <div class="reel-strip"></div>
+                    </div>
+                </div>
+                
+                <!-- 开始按钮 -->
+                <button class="spin-button" id="spin-button" disabled>加载中…</button>
+            </div>
+        </div>
+    </header>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
